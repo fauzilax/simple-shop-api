@@ -4,7 +4,7 @@
 
 - Clone to directory
 
-  ``` $git clone github.com/fauzilax/simple-shop-api.git ```
+  ``` $git clone https://github.com/fauzilax/simple-shop-api.git ```
 
 - Change directory
  
