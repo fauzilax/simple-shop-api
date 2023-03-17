@@ -1,4 +1,4 @@
-# simple-shop-api
+# simple-shop-api (Progress)
 
 <h2>How to run local</h2>
 
