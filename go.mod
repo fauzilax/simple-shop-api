@@ -6,7 +6,7 @@ require gorm.io/gorm v1.24.6
 
 require (
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
-	github.com/labstack/echo/v4 v4.10.2 // indirect
+	github.com/labstack/echo/v4 v4.10.2
 	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect

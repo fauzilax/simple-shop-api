@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	userDB "simple-shop-api/features/user/data"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -19,5 +21,5 @@ func InitDB(dc DBConfig) *gorm.DB {
 }
 
 func Migrate(db *gorm.DB) {
-	// db.AutoMigrate(uData.User{})
+	db.AutoMigrate(userDB.User{})
 }
