@@ -21,7 +21,7 @@ func New(db *gorm.DB) user.UserData {
 // Register implements user.UserData
 func (uq *userQuery) Register(newUser user.UserCore) (user.UserCore, error) {
 	data := CoreToData(newUser)
-	err := uq.db.Create(newUser).Error
+	err := uq.db.Create(&data).Error
 	if err != nil {
 		log.Println("query error", err.Error())
 		return user.UserCore{}, errors.New("create account fail, problem with server")

@@ -7,12 +7,12 @@ import (
 )
 
 type userServiceCase struct {
-	query user.UserData
+	qry user.UserData
 }
 
 func New(ud user.UserData) user.UserService {
 	return &userServiceCase{
-		query: ud,
+		qry: ud,
 	}
 }
 
@@ -22,7 +22,7 @@ func (usc *userServiceCase) Register(newUser user.UserCore) (user.UserCore, erro
 		return user.UserCore{}, errors.New("password cannot be empty")
 	}
 	newUser.Password = helper.GeneratePassword(newUser.Password)
-	res, err := usc.Register(newUser)
+	res, err := usc.qry.Register(newUser)
 	if err != nil {
 		return user.UserCore{}, errors.New("register error")
 	}

@@ -3,9 +3,9 @@ package handler
 import "simple-shop-api/features/user"
 
 type RegisterRequest struct {
-	Name     string
-	Email    string
-	Password string
+	Name     string `json:"name" form:"name"`
+	Email    string `json:"email" form:"email"`
+	Password string `json:"password" form:"password"`
 }
 
 func RequestToCore(input interface{}) *user.UserCore {

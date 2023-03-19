@@ -37,6 +37,7 @@ func (uhc *userHandlerController) Register() echo.HandlerFunc {
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, map[string]interface{}{"message": "wrong input format"})
 		}
+
 		res, err := uhc.srv.Register(*RequestToCore(input))
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, map[string]interface{}{"message": "wrong input format"})
