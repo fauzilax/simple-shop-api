@@ -25,7 +25,21 @@ func (uhc *userHandlerController) Delete() echo.HandlerFunc {
 
 // Login implements user.UserHandler
 func (uhc *userHandlerController) Login() echo.HandlerFunc {
-	panic("unimplemented")
+	return func(c echo.Context) error {
+		input := LoginRequest{}
+		err := c.Bind(input)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, map[string]interface{}{"message": "wrong input format"})
+		}
+		res, err := uhc.srv.Login(input.Email, input.Password)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, map[string]interface{}{"message": "wrong input format"})
+		}
+		log.Println(res)
+		return c.JSON(http.StatusCreated, map[string]interface{}{
+			"message": "account succesful created",
+		})
+	}
 }
 
 // Register implements user.UserHandler

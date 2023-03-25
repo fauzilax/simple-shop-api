@@ -1,9 +1,16 @@
 package handler
 
-import "simple-shop-api/features/user"
+import (
+	"simple-shop-api/features/user"
+)
 
 type RegisterRequest struct {
 	Name     string `json:"name" form:"name"`
+	Email    string `json:"email" form:"email"`
+	Password string `json:"password" form:"password"`
+}
+
+type LoginRequest struct {
 	Email    string `json:"email" form:"email"`
 	Password string `json:"password" form:"password"`
 }

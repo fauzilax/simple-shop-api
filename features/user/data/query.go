@@ -36,7 +36,13 @@ func (uq *userQuery) Delete(tokenID uint, userID uint) error {
 
 // Login implements user.UserData
 func (uq *userQuery) Login(email string) (user.UserCore, error) {
-	panic("unimplemented")
+	data := User{}
+	err := uq.db.Where("email = ?", email).First(&data).Error
+	if err != nil {
+		log.Println("query error", err.Error())
+		return user.UserCore{}, errors.New("data not found")
+	}
+	return DataToCore(data), nil
 }
 
 // Update implements user.UserData

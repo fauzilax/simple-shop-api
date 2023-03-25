@@ -36,7 +36,15 @@ func (usc *userServiceCase) Delete(token interface{}, userID uint) error {
 
 // Login implements user.UserService
 func (usc *userServiceCase) Login(email string, password string) (user.UserCore, error) {
-	panic("unimplemented")
+	res, err := usc.qry.Login(email)
+	if err != nil {
+		return user.UserCore{}, errors.New("register error")
+	}
+	err = helper.ComparePassword(res.Password, password)
+	if err != nil {
+		return user.UserCore{}, errors.New("password not matched")
+	}
+	return res, nil
 }
 
 // Update implements user.UserService
