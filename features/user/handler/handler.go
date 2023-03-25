@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"simple-shop-api/features/user"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,7 +21,24 @@ func New(us user.UserService) user.UserHandler {
 
 // Delete implements user.UserHandler
 func (uhc *userHandlerController) Delete() echo.HandlerFunc {
-	panic("unimplemented")
+	return func(c echo.Context) error {
+		token := c.Get("user")
+		paramID := c.Param("id")
+		employeeID, err := strconv.Atoi(paramID)
+		if err != nil {
+			log.Println("convert id error", err.Error())
+			return c.JSON(http.StatusBadGateway, "Invalid input")
+		}
+		err = uhc.srv.Delete(token, uint(employeeID))
+		if err != nil {
+			return c.JSON(http.StatusNotFound, map[string]interface{}{
+				"message": "data not found",
+			})
+		}
+		return c.JSON(http.StatusOK, map[string]interface{}{
+			"message": "success deactivate employee profile",
+		})
+	}
 }
 
 // Login implements user.UserHandler
@@ -66,5 +84,10 @@ func (uhc *userHandlerController) Register() echo.HandlerFunc {
 
 // Update implements user.UserHandler
 func (uhc *userHandlerController) Update() echo.HandlerFunc {
-	panic("unimplemented")
+	return func(c echo.Context) error {
+		return c.JSON(http.StatusCreated, map[string]interface{}{
+			"message": "account succesful created",
+		})
+
+	}
 }
